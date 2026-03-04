@@ -1,0 +1,9 @@
+streamlit
+langchain
+langgraph
+langchain-groq
+langchain-chroma
+duckduckgo-search
+reportlab
+python-dotenv
+langchain-huggingface

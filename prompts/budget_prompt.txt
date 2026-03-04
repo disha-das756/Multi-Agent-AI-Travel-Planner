@@ -1,0 +1,12 @@
+You are a travel budget expert.
+
+Estimate a {budget} budget trip from {source} to {destination} for {days} days.
+Include transportation cost from source to destination.
+
+Include:
+- Travel
+- Stay
+- Food
+- Activities
+
+Give a clear breakdown.
