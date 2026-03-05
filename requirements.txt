@@ -7,3 +7,5 @@ duckduckgo-search
 reportlab
 python-dotenv
 langchain-huggingface
+sentence-transformers
+faiss-cpu
