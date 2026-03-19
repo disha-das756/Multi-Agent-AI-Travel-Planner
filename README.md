@@ -1,249 +1,122 @@
-# 🌍 IntelliTrip AI
+# 🌍 IntelliTrip AI: Multi-Agent Travel Planner
 
-### Multi-Agent Travel Planning System
+![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white)
+![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?style=for-the-badge&logo=langchain&logoColor=white)
+![Groq](https://img.shields.io/badge/Groq-f55?style=for-the-badge)
+![Llama 3](https://img.shields.io/badge/Llama_3.3-0467DF?style=for-the-badge&logo=meta&logoColor=white)
 
-IntelliTrip AI is an advanced multi-agent travel planning system built using **LangGraph, LangChain, and Streamlit**.
-It automatically generates structured, personalized, and downloadable travel plans using an orchestrated AI agent pipeline.
-
-The system demonstrates modular agent design, tool-augmented reasoning, evaluation loops, and production-ready UI implementation.
-
----
-
-# 🚀 Live Demo (Optional)
-
-```
-https://your-app-link.streamlit.app
-```
+IntelliTrip AI is a production-grade **Multi-Agent Travel Planning System** orchestrated with **LangGraph**. It automates the complex process of researching, planning, budgeting, and evaluating travel itineraries through a specialized pipeline of AI agents.
 
 ---
 
-# 🧠 System Architecture
-
-The project uses a **LangGraph-based multi-agent workflow**:
-
-```
-User Input
-   ↓
-Memory Agent
-   ↓
-Transport Agent
-   ↓
-Places Agent (DuckDuckGo Search)
-   ↓
-Itinerary Agent
-   ↓
-Budget Agent
-   ↓
-Evaluator Agent
-   ↓
-Refinement Agent
-   ↓
-PDF Generator
-```
-
-Each agent has a specific responsibility, ensuring modularity and scalability.
+## 🚀 Live Demo
+Experience the autonomous planner here:
+**[https://multi-agent-ai-travel-planner-jqjwzedlmn84eegchewjbm.streamlit.app/](https://multi-agent-ai-travel-planner-jqjwzedlmn84eegchewjbm.streamlit.app/)**
 
 ---
 
-# ✨ Features
+## 🧠 Autonomous Architecture
+This system utilizes a directed acyclic graph (DAG) to manage state and control flow between specialized AI agents:
 
-## 🗺️ Smart Itinerary Generation
-
-* Structured travel plan
-* Day-wise breakdown
-* Attraction details
-* Weather overview
-* Visa information
-
-## 🚗 Transport Optimization
-
-* Cheapest option
-* Fastest option
-* Most comfortable option
-* Cost estimation in INR
-
-## 💰 Budget Estimation
-
-* Category-wise breakdown
-* Total cost estimation
-* Practical travel spending suggestions
-
-## 🧠 AI Evaluation System
-
-* Quality Score
-* Coverage Score
-* Practicality Score
-* Strengths & Improvement suggestions
-
-## 📄 PDF Export
-
-* Automatically generates a downloadable travel plan
-* Clean A4 formatted output
-* Includes transport + itinerary
-
-## 🎨 Professional UI
-
-* Two-column layout
-* Tabs for Travel Plan & Evaluation
-* Quality score metric display
-* Sidebar branding
-* Spinner loading animation
-
----
-
-# 🛠️ Tech Stack
-
-* Python
-* LangChain
-* LangGraph
-* Streamlit
-* ChromaDB (memory)
-* DuckDuckGo Search Tool
-* ReportLab (PDF generation)
-* Groq LLM (LLaMA 3)
-
----
-
-# 📂 Project Structure
-
+```mermaid
+graph TD
+    User([User Input]) --> Places[Places Agent]
+    Places --> Itinerary[Itinerary Agent]
+    Itinerary --> Budget[Budget Agent]
+    Budget --> Evaluator[Evaluator Agent]
+    Evaluator --> PDF[PDF Generator]
+    PDF --> End([Downloadable Plan])
+    
+    subgraph "AI Agent Pipeline"
+    Places
+    Itinerary
+    Budget
+    Evaluator
+    end
 ```
-intellitrip-ai/
-│
-├── agents/
-│   ├── memory_agent.py
-│   ├── transport_agent.py
+
+### The Agent Squad:
+*   **📍 Places Agent:** Uses **DuckDuckGo Search** to find trending and relevant attractions for specific destinations and interests.
+*   **🗺️ Itinerary Agent:** Powered by **Llama 3.3 (Groq)**, it synthesizes search results into a detailed, day-wise structured travel plan.
+*   **💰 Budget Agent:** Provides category-wise cost estimations (Travel, Stay, Food, Activities) in **INR**.
+*   **🧠 Evaluator Agent:** Critiques the plan based on practicality, coverage, and quality, providing an automated **AI Quality Score**.
+
+---
+
+## ✨ Key Features
+- **Smart Discovery:** Real-world search-augmented attraction finding.
+- **Dynamic Orchestration:** LangGraph-managed state for consistent agent handoffs.
+- **Budget Intelligence:** Realistic cost breakdowns tailored to your travel style.
+- **Self-Critique:** Automated evaluation loop to ensure plan feasibility.
+- **PDF Export:** Professional A4-formatted travel guides ready for your trip.
+- **Cinematic UI:** A sleek, high-performance Streamlit interface with live metrics and progress indicators.
+
+---
+
+## 🛠️ Tech Stack
+- **Core:** Python 3.9+
+- **Agent Framework:** LangGraph & LangChain
+- **LLM Engine:** Groq (Llama-3.3-70b-versatile)
+- **Search Tool:** DuckDuckGo Search API
+- **UI:** Streamlit
+- **PDF Engine:** ReportLab
+
+---
+
+## 📂 Project Structure
+```text
+Multi-Agent-AI-Travel-Planner/
+├── agents/             # Logic for specialized AI agents
 │   ├── places_agent.py
 │   ├── itinerary_agent.py
 │   ├── budget_agent.py
-│   ├── evaluator_agent.py
-│   ├── refinement_agent.py
-│
-├── prompts/
+│   └── evaluator_agent.py
+├── prompts/            # Structured system instructions
 │   ├── itinerary_prompt.txt
-│   ├── budget_prompt.txt
-│
-├── graph.py
-├── app.py
-├── trip_memory.py
-├── requirements.txt
+│   └── budget_prompt.txt
+├── graph.py            # LangGraph workflow orchestration
+├── app.py              # Streamlit application & PDF logic
+├── requirements.txt    # Project dependencies
 └── README.md
 ```
 
 ---
 
-# ⚙️ Installation & Setup
+## ⚙️ Installation & Setup
 
-## 1️⃣ Clone Repository
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/disha-das756/Multi-Agent-AI-Travel-Planner.git
+   cd Multi-Agent-AI-Travel-Planner
+   ```
 
-```
-git clone https://github.com/disha-das756/Multi-Agent-AI-Travel-Planner.git
-cd intellitrip-ai
-```
+2. **Set up a virtual environment:**
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
 
-## 2️⃣ Create Virtual Environment
+3. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-```
-python -m venv venv
-source venv/bin/activate   # Mac/Linux
-venv\Scripts\activate      # Windows
-```
+4. **Add your API Keys:**
+   Create a `.env` file in the root directory:
+   ```env
+   GROQ_API_KEY=your_groq_api_key_here
+   ```
 
-## 3️⃣ Install Dependencies
-
-```
-pip install -r requirements.txt
-```
-
-## 4️⃣ Add Environment Variables
-
-Create a `.env` file:
-
-```
-GROQ_API_KEY=your_api_key_here
-```
-
----
-
-## 5️⃣ Run Application
-
-```
-streamlit run app.py
-```
+5. **Launch the app:**
+   ```bash
+   streamlit run app.py
+   ```
 
 ---
 
-# 🎯 Example Usage
-
-Input:
-
-* Starting City: Kolkata
-* Destination: Goa
-* Duration: 5 days
-* Budget: Budget
-* Travel Style: Adventure
-* Interests: Beach, Food, Nightlife
-
-Output:
-
-* Transport comparison
-* Structured itinerary
-* Budget breakdown
-* Accommodation suggestions
-* AI quality score
-* Downloadable PDF
+## 👨‍💻 Author
+**Disha Das**  
+*AI & Multi-Agent Systems Developer*
 
 ---
-
-# 🧩 Design Principles
-
-This project demonstrates:
-
-* Modular multi-agent orchestration
-* Tool-augmented reasoning
-* Evaluation and refinement loop
-* Structured output formatting
-* Clean UI/UX separation
-* Production-ready architecture
-
----
-
-# 📈 Why This Project Stands Out
-
-Unlike basic LLM chatbots, IntelliTrip AI:
-
-* Uses structured agent orchestration
-* Separates responsibilities across agents
-* Implements evaluation and refinement stage
-* Integrates tool-based search
-* Provides exportable outputs
-* Demonstrates scalable AI system design
-
-This makes it suitable for:
-
-* AI Engineer portfolios
-* LangGraph demonstrations
-* Multi-agent architecture case studies
-* Resume showcase projects
-
----
-
-# 🚀 Future Improvements
-
-* Real-time flight API integration
-* Distance-based cost calculation
-* Crowd prediction system
-* Weather API integration
-* Carbon footprint estimation
-* Chat-style travel assistant
-* SaaS deployment with user accounts
-
----
-
-# 👩‍💻 Author
-
-Disha Das
-AI & Multi-Agent Systems Enthusiast
-
----
-
-
+© 2026 IntelliTrip AI – Automating the Future of Travel.

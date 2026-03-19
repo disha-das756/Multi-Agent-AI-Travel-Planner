@@ -159,20 +159,36 @@ if generate:
     if not source or not destination:
         st.warning("⚠ Please enter both Starting City and Destination.")
     else:
-        with st.spinner(" AI Agents are planning your trip..."):
+        # Verify API Key exists
+        import os
+        from dotenv import load_dotenv
+        load_dotenv()
+        
+        if not os.getenv("GROQ_API_KEY"):
+            st.error("❌ GROQ_API_KEY not found! Please add it to your environment variables or Streamlit Secrets.")
+            st.stop()
 
+        with st.spinner(" AI Agents are planning your trip..."):
             state = {
                 "source": source,
                 "destination": destination,
                 "days": days,
                 "budget": budget,
                 "interests": interests,
-                "travel_style": travel_style
+                "travel_style": travel_style,
+                "itinerary": "",
+                "budget_estimate": "",
+                "evaluation_report": "",
+                "popular_places": ""
             }
 
-            result = app_graph.invoke(state)
-
-        st.success("✅ Trip Plan Generated Successfully!")
+            try:
+                result = app_graph.invoke(state)
+                st.success("✅ Trip Plan Generated Successfully!")
+            except Exception as e:
+                st.error(f"❌ An error occurred during generation: {str(e)}")
+                st.info("💡 Hint: Check your internet connection or API key limits.")
+                st.stop()
 
         # -------------------------------------------------
         # QUALITY SCORE

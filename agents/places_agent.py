@@ -1,7 +1,7 @@
 from langchain_community.tools import DuckDuckGoSearchRun
 
 
-seaech = DuckDuckGoSearchRun()
+search = DuckDuckGoSearchRun()
 
 
 def places_agent(state):
@@ -9,7 +9,7 @@ def places_agent(state):
 
     query = f"Top tourist places to visit in {destination}"
 
-    results = seaech.run(query)
+    results = search.run(query)
 
     state["popular_places"] = results
     return state

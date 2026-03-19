@@ -1,9 +1,14 @@
+import os
 from langchain_groq import ChatGroq
 from langchain_core.prompts import PromptTemplate # PromptTemplate helps you create dynamic prompts.Instead of hard-coding text, you define placeholders ({destination}, {days}, etc.).
 
 from dotenv import load_dotenv
 
 load_dotenv()
+
+# Get the absolute path to the prompts directory
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROMPT_PATH = os.path.join(BASE_DIR, "prompts", "budget_prompt.txt")
 
 
 # Initialize the model
@@ -16,7 +21,7 @@ llm = ChatGroq(
 
 
 def budget_agent(state):
-    with open("prompts/budget_prompt.txt") as f:
+    with open(PROMPT_PATH, encoding="utf-8") as f:
         template = f.read()   # Reads the prompt text from an external file.
 
 
