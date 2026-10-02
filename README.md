@@ -56,7 +56,7 @@ graph TD
 ## 🛠️ Tech Stack
 - **Core:** Python 3.9+
 - **Agent Framework:** LangGraph & LangChain
-- **LLM Engine:** Groq (Llama-3.3-70b-versatile)
+- **LLM Engine:** Groq (llama-3.1-8b-instant)
 - **Search Tool:** DuckDuckGo Search API
 - **UI:** Streamlit
 - **PDF Engine:** ReportLab
