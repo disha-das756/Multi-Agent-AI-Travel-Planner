@@ -10,7 +10,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROMPT_PATH = os.path.join(BASE_DIR, "prompts", "itinerary_prompt.txt")
 
 llm = ChatGroq(
-    model_name="llama-3.1-8b-instant",
+    model_name="openai/gpt-oss-120b",
     temperature=0.7
 )
 
