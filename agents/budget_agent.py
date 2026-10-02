@@ -13,7 +13,7 @@ PROMPT_PATH = os.path.join(BASE_DIR, "prompts", "budget_prompt.txt")
 
 # Initialize the model
 llm = ChatGroq(
-    model_name="llama-3.1-8b-instant", 
+    model_name="openai/gpt-oss-120b", 
     temperature=0
 )
 
